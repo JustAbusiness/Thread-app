@@ -1,8 +1,9 @@
 import {
-  useMutation, // MODd data
+  useMutation, useQueryClient, // MODd data
 } from "@tanstack/react-query";
-import { createUserAccount, signInAccount } from "../appwrite/api";
-import { INewUser } from "@/types";
+import { createUserAccount, signInAccount, signOutAccount, createPost, } from "../appwrite/api";
+import { INewPost, INewUser } from "@/types";
+
 
 
 export const userCreateUserAccount = () => {
@@ -24,4 +25,27 @@ export const useSignInAccount = () => {
 
     });
 
+};
+
+
+export const useSignOutAccount = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    return useMutation({
+        mutationFn: signOutAccount
+
+    });
+
 }
+
+
+export const useCreatePost = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn: (post: INewPost) => createPost(post),
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+        });
+      },
+    });
+  };

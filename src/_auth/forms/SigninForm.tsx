@@ -70,7 +70,7 @@ function SigninForm() {
     <Form {...form}>
       <div className="sm:w-420 px-4 py-3 flex-center flex-col border-1 h-full bg-purple-600 rounded-lg shadow-[16px 14px 20px #0000008c]">
         <img
-          src="/assets/images/Logo.svg"
+          src="/assets/images/logo.svg"
           alt="logo"
           className="items-center ml-[40%] h-full"
         />
